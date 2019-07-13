@@ -2,11 +2,24 @@ import React, { Component } from 'react';
 import './App.css';
 import Map from './components/Map'
 import * as FoursquareAPI from './helper/FoursquareAPI'
+import Sidebar from './components/Sidebar';
+import Header from './components/Header'
+import Footer from './components/Footer'
 
 class App extends Component {
   state = {
     locations: [],
     markers: []
+  }
+
+  /*
+   *when an item in the list is clicked, 
+   *it gets the marker corresponding to the location of that item and 
+   *calls the "handleMarkerClick" to open the Window.
+   */
+  handleListItemClick = (location) => {
+    const marker = this.state.markers.find(marker => location.id === marker.id)
+    this.handleMarkerClick(marker)
   }
 
   handleMarkerClick = (marker) => {
@@ -65,7 +78,10 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <Header />
+        <Sidebar {...this.state} handleListItemClick={this.handleListItemClick} />
         <Map {...this.state} handleMarkerClick={this.handleMarkerClick} /> {/*pass the whole state and some methods*/}
+        <Footer />
       </div>
     );
   }
