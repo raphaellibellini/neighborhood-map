@@ -9,6 +9,25 @@ class App extends Component {
     markers: []
   }
 
+  /*
+   *when the marker is clicked
+   *set the property "showingInfoWindow" of this marker to true and
+   *adds this marker to the markers array. 
+  */ 
+  handleMarkerClick = (marker) => {
+    this.closeAllInfoWindows()
+    marker.showingInfoWindow = true
+    this.setState({ markers: Object.assign(this.state.markers, marker )}) 
+  }
+
+  closeAllInfoWindows = () => {
+    const markers = this.state.markers.map(marker => {
+      marker.showingInfoWindow = false
+      return marker
+    })
+    this.setState({ markers: Object.assign(this.state.markers, markers)})
+  }
+
   componentDidMount() {
     FoursquareAPI.getAllLocations()
     .then(res => {
@@ -17,7 +36,7 @@ class App extends Component {
         return {
           lat: location.location.lat,
           lng: location.location.lng,
-          isOpen: false,
+          showingInfoWindow: false, 
           isVisible: true
         }
       })
@@ -32,7 +51,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Map {...this.state} /> {/*pass the whole state*/}
+        <Map {...this.state} handleMarkerClick={this.handleMarkerClick} /> {/*pass the whole state and some methods*/}
       </div>
     );
   }
