@@ -7,7 +7,7 @@ class Sidebar extends Component {
         return (
             <div className='sidebar'>
                 <h2>Places</h2>
-                <Search />
+                <Search query={this.props.query} updateQuery={this.props.updateQuery} />
                 <List {...this.props} handleListItemClick={this.props.handleListItemClick} />
             </div>
         )

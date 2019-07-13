@@ -9,7 +9,8 @@ import Footer from './components/Footer'
 class App extends Component {
   state = {
     locations: [],
-    markers: []
+    markers: [],
+    query: ''
   }
 
   /*
@@ -54,7 +55,7 @@ class App extends Component {
     this.setState({ markers: Object.assign(this.state.markers, markers)})
   }
 
-  componentDidMount() {
+  getAllLocations = () => {
     FoursquareAPI.searchLocations('restaurant')
     .then(res => {
       const locations = res
@@ -75,11 +76,41 @@ class App extends Component {
     })
   }
 
+  componentDidMount() {
+    this.getAllLocations()
+  }
+
+  updateQuery = (query) => {
+		this.setState ({query: query})
+    this.searchLocations(query)
+  }
+
+  searchLocations = (query) => {
+    if(query) {
+      FoursquareAPI.searchLocations(query)
+        .then(res => {
+          const locations = res
+          const markers = locations.map(location => {
+            return {
+              lat: location.location.lat,
+              lng: location.location.lng,
+              showingInfoWindow: false, 
+              isVisible: true,
+              id: location.id
+            }
+      })
+      this.setState({ locations, markers })
+        })
+    } else {
+      this.getAllLocations()
+    }
+  }
+
   render() {
     return (
       <div className="App">
         <Header />
-        <Sidebar {...this.state} handleListItemClick={this.handleListItemClick} />
+        <Sidebar {...this.state} handleListItemClick={this.handleListItemClick} updateQuery={this.updateQuery} />
         <Map {...this.state} handleMarkerClick={this.handleMarkerClick} /> {/*pass the whole state and some methods*/}
         <Footer />
       </div>
