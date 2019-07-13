@@ -9,15 +9,28 @@ class App extends Component {
     markers: []
   }
 
-  /*
-   *when the marker is clicked
-   *set the property "showingInfoWindow" of this marker to true and
-   *adds this marker to the markers array. 
-  */ 
   handleMarkerClick = (marker) => {
     this.closeAllInfoWindows()
+    /*
+     *when the marker is clicked
+     *set the property "showingInfoWindow" of this marker to true and
+     *adds this marker to the markers array. 
+     */
     marker.showingInfoWindow = true
     this.setState({ markers: Object.assign(this.state.markers, marker )}) 
+
+    //get the location of the marker that was clicked
+    const location = this.state.locations.find(location => location.id === marker.id)
+    //get the location details through the marker that was clicked
+    FoursquareAPI.getVenueDetails(marker.id)
+    .then(res => {
+      //add the details to the location
+      const detailedLocation = Object.assign(location, res)
+
+      //add this detailed location to the locations array
+      this.setState({ locations: Object.assign(this.state.locations, detailedLocation )})
+      console.log(detailedLocation)
+    })
   }
 
   closeAllInfoWindows = () => {
@@ -29,7 +42,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    FoursquareAPI.getAllLocations()
+    FoursquareAPI.searchLocations('restaurant')
     .then(res => {
       const locations = res
       const markers = locations.map(location => {
@@ -37,7 +50,8 @@ class App extends Component {
           lat: location.location.lat,
           lng: location.location.lng,
           showingInfoWindow: false, 
-          isVisible: true
+          isVisible: true,
+          id: location.id
         }
       })
       this.setState({ locations, markers })

@@ -8,15 +8,24 @@ const MyMapComponent = withScriptjs(withGoogleMap((props) =>
     defaultZoom={16}
     defaultCenter={defaultCenter}
   >
-    {props.markers && props.markers.filter(marker => marker.isVisible).map((marker, index) => (
-        <Marker key={index} position={{ lat: marker.lat, lng: marker.lng }} onClick={() => props.handleMarkerClick(marker)} >
-            {marker.showingInfoWindow && (
-                <InfoWindow>
-                    <p>Testing</p>
-                </InfoWindow>
-            )}
-        </Marker>
-    ))} 
+    {props.markers && props.markers.filter(marker => marker.isVisible).map((marker, index) => {
+        const locationDetails = props.locations.find(location => location.id === marker.id)
+        return (
+            <Marker key={index} position={{ lat: marker.lat, lng: marker.lng }} onClick={() => props.handleMarkerClick(marker)} >
+                {marker.showingInfoWindow && (
+                    <InfoWindow>
+                        <React.Fragment>
+                            <h3>{locationDetails.name}</h3>
+                            <p>{`Rating: ${locationDetails.rating}`}</p>
+                            {locationDetails.price && 
+                                <p>{`Price: ${locationDetails.price.tier}`}</p>
+                            }
+                        </React.Fragment>
+                    </InfoWindow>
+                )}
+            </Marker>
+        )    
+    })}
   </GoogleMap>
 ))
 
