@@ -3,12 +3,12 @@ const auth = 'client_id=AOCE0LHVYXMGPPCR3ZP4R12KWUC4U01GNVZLUHSJRORV3KSX&client_
 const defaultCenter = '45.434479,12.334806'
 
 export const getAllLocations = () => 
-    fetch(`${api}/venues/search?${auth}limit=30&radius=10000&ll=${defaultCenter}`)
+    fetch(`${api}/venues/search?${auth}radius=10000&ll=${defaultCenter}`)
     .then(res => res.json())
     .then(data => data.response.venues)
 
 export const searchLocations = (query) =>
-    fetch(`${api}/venues/search?${auth}limit=30&radius=10000&ll=${defaultCenter}&query=${query}`)
+    fetch(`${api}/venues/search?${auth}radius=10000&ll=${defaultCenter}&query=${query}`)
     .then(res => res.json())
     .then(data => data.response.venues)
 

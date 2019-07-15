@@ -5,7 +5,6 @@ function Search(props) {
 
     return (
         <input
-            className='sidebar'
             type='text'
             placeholder='Filter Locations'
             value={query}

@@ -1,5 +1,81 @@
 .App {
   text-align: center;
+  width: 100vw;
+  height: 100vh;
+}
+
+input {
+  width: 100vw;
+  font-size: 1em;
+  background-color: #f2f2f2;
+  padding: .25em 0;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.list-item {
+  font-size: 1em;
+  cursor: pointer;
+  border-left: 6px solid red;
+  background-color: #009933;
+  color: white;
+  margin: 0.5em 4px;
+  padding: .25em .5em;
+  text-align: left
+}
+
+h1 {
+  font-size: 20px;
+  margin: 0;
+  padding: 8px 0;
+  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+  color: white;
+  background-color: red;
+}
+
+.footer {
+  font-size: 12px;
+  text-align: center;
+  padding: 8px;
+}
+
+.info-window-title {
+  font-size: 18px;
+  padding: 0;
+  margin: 0 0 4px 0;
+}
+
+.info-window {
+  font-size: 12px;
+  padding: 0;
+  margin: 0;
+}
+
+/* Desktops and tablets */
+@media (min-width: 768px) {
+  h1 {
+    height: 7%;
+    font-size: 2em;
+  }
+
+  .list-item {
+    padding: .5em .5em;
+  }
+
+  input {
+    padding: .5em .5em;
+  }
+
+  .footer {
+    font-size: 14px;
+  }
+}
+
+/*
   height: 150vh;
   width: 100vw;
   display: flex;
@@ -14,25 +90,11 @@
   width: 25%;
 }
 
-.search {
-  width: 100%;
-  height: 2em;
-  font-size: 1em;
-}
-
 .list {
   padding: 1em;
 }
 
-.list-item {
-  list-style: none;
-  font-size: 1em;
-  padding: 0.5em;
-  margin-top: 1em;
-  cursor: pointer;
-  border-left: 6px solid red;
-  background-color: lightgrey;
-}
+
 
 .footer {
   width: 100%;
@@ -59,3 +121,4 @@
     transform: rotate(360deg);
   }
 }
+*/

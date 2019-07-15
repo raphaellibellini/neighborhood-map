@@ -15,10 +15,14 @@ const MyMapComponent = withScriptjs(withGoogleMap((props) =>
                 {marker.showingInfoWindow && (
                     <InfoWindow>
                         <React.Fragment>
-                            <h3>{locationDetails.name}</h3>
-                            <p>{`Rating: ${locationDetails.rating}`}</p>
-                            {locationDetails.price && 
-                                <p>{`Price: ${locationDetails.price.tier}`}</p>
+                            <h2 className='info-window-title'>{locationDetails.name}</h2>
+                            <p className='info-window'>{locationDetails.location.address}</p>
+                            {(locationDetails.categories && locationDetails.categories.length != 0)  &&
+                                <p className='info-window'>{locationDetails.categories[0].name}</p>
+                            }
+                            <p className='info-window'>{`Rating: ${locationDetails.rating}`}</p>
+                            {locationDetails.hours && 
+                                <p className='info-window'>{locationDetails.hours.isOpen}</p>
                             }
                         </React.Fragment>
                     </InfoWindow>
@@ -34,9 +38,10 @@ class Map extends Component {
         return(
             <MyMapComponent
                 {...this.props /*get all props*/}
+                className='map'
                 googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyAdCskTxc3YDhwR56pWIWzBLMxHX8wgHkM"
                 loadingElement={<div style={{ height: `100%` }} />}
-                containerElement={<div style={{ height: `100%`, width: `75%` }} />}
+                containerElement={<div style={{ height: `55%`, width: `100%` }} />}
                 mapElement={<div style={{ height: `100%` }} />}
             />
         )
