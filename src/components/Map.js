@@ -11,9 +11,12 @@ const MyMapComponent = withScriptjs(withGoogleMap((props) =>
     {props.markers && props.markers.filter(marker => marker.isVisible).map((marker, index) => {
         const locationDetails = props.locations.find(location => location.id === marker.id)
         return (
-            <Marker key={index} position={{ lat: marker.lat, lng: marker.lng }} onClick={() => props.handleMarkerClick(marker)} >
+            <Marker key={index} position={{ lat: marker.lat, lng: marker.lng }} onClick={() => props.handleMarkerClick(marker)}
+            animation={marker.showingInfoWindow && window.google.maps.Animation.BOUNCE} 
+            icon={marker.showingInfoWindow === true ? "http://maps.google.com/mapfiles/ms/icons/green-dot.png": 
+            "http://maps.google.com/mapfiles/ms/icons/red-dot.png"} >
                 {marker.showingInfoWindow && (
-                    <InfoWindow>
+                    <InfoWindow onCloseClick={() => props.closeAllInfoWindows()}>
                         <React.Fragment>
                             <h2 className='info-window-title'>{locationDetails.name}</h2>
                             <p className='info-window'>{locationDetails.location.address}</p>

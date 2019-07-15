@@ -109,7 +109,7 @@ class App extends Component {
     return (
       <div className="App">
         <Header />
-        <Map {...this.state} handleMarkerClick={this.handleMarkerClick} /> {/*pass the whole state and some methods*/}
+        <Map {...this.state} handleMarkerClick={this.handleMarkerClick} closeAllInfoWindows={this.closeAllInfoWindows}/> {/*pass the whole state and some methods*/}
         <ContainerInfo {...this.state} handleListItemClick={this.handleListItemClick} updateQuery={this.updateQuery} />
       </div>
     );
