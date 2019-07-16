@@ -97,8 +97,8 @@ class App extends Component {
               isVisible: true,
               id: location.id
             }
-      })
-      this.setState({ locations, markers })
+          })
+          this.setState({ locations, markers })
         })
     } else {
       this.getAllLocations()

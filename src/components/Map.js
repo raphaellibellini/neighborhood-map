@@ -20,7 +20,7 @@ const MyMapComponent = withScriptjs(withGoogleMap((props) =>
                         <React.Fragment>
                             <h2 className='info-window-title'>{locationDetails.name}</h2>
                             <p className='info-window'>{locationDetails.location.address}</p>
-                            {(locationDetails.categories && locationDetails.categories.length != 0)  &&
+                            {(locationDetails.categories && locationDetails.categories.length !== 0)  &&
                                 <p className='info-window'>{locationDetails.categories[0].name}</p>
                             }
                             <p className='info-window'>{`Rating: ${locationDetails.rating}`}</p>
