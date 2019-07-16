@@ -6,11 +6,11 @@ import Footer from './Footer';
 class ContainerInfo extends Component {
     render() {
         return (
-            <div className='container-info'>
+            <section className='container-info'>
                 <Search query={this.props.query} updateQuery={this.props.updateQuery} />
                 <List {...this.props} handleListItemClick={this.props.handleListItemClick} />
                 <Footer />
-            </div>
+            </section>
         )
     }
 }

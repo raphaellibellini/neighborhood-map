@@ -42,6 +42,8 @@ class Map extends Component {
             <MyMapComponent
                 {...this.props /*get all props*/}
                 className='map'
+                aria-label='map'
+                role='application'
                 googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyAdCskTxc3YDhwR56pWIWzBLMxHX8wgHkM"
                 loadingElement={<div style={{ height: `100%` }} />}
                 containerElement={<div style={{ height: `55%`, width: `100%` }} />}
