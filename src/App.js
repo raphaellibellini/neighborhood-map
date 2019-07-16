@@ -44,6 +44,10 @@ class App extends Component {
       this.setState({ locations: Object.assign(this.state.locations, detailedLocation )})
       console.log(detailedLocation)
     })
+    .catch(error => {
+      console.error('Error:', error)
+      alert('Error while Getting Venue Details! FourSquare API Service may be un reachable or unavailable')
+    })
   }
 
   closeAllInfoWindows = () => {
@@ -73,6 +77,10 @@ class App extends Component {
       console.log("Markers")
       console.log(this.state.markers)
     })
+    .catch(error => {
+      console.error('Error:', error)
+      alert('Error While getting all Locations data from FourSquare API!')
+    })
   }
 
   componentDidMount() {
@@ -99,6 +107,10 @@ class App extends Component {
             }
           })
           this.setState({ locations, markers })
+        })
+        .catch(error => {
+          console.error('Error:', error)
+          alert('Error While getting searched Locations data from FourSquare API!')
         })
     } else {
       this.getAllLocations()
