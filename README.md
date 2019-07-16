@@ -5,9 +5,10 @@ The application has features such as: locations filter and PWA.
 
 The following resources were used:
 [react-google-maps](https://github.com/tomchentw/react-google-maps) to get the map
+
 [Foursquare API](https://developer.foursquare.com/) to get location information
 
-![screenshot of the app](img/screen.png)
+![screenshot of the app](imgs/screen.png)
 
 ## How to start the app
 
