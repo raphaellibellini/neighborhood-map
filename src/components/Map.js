@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { withScriptjs, withGoogleMap, GoogleMap, Marker, InfoWindow } from "react-google-maps"
+import ErrorBoundaries from './ErrorBoundaries'
 
 const defaultCenter = { lat: 45.434479, lng: 12.334806 }
 
@@ -39,16 +40,18 @@ const MyMapComponent = withScriptjs(withGoogleMap((props) =>
 class Map extends Component {
     render() {
         return(
-            <MyMapComponent
-                {...this.props /*get all props*/}
-                className='map'
-                aria-label='map'
-                role='application'
-                googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyAdCskTxc3YDhwR56pWIWzBLMxHX8wgHkM"
-                loadingElement={<div style={{ height: `100%` }} />}
-                containerElement={<div style={{ height: `55%`, width: `100%` }} />}
-                mapElement={<div style={{ height: `100%` }} />}
-            />
+            <ErrorBoundaries>
+                <MyMapComponent
+                    {...this.props /*get all props*/}
+                    className='map'
+                    aria-label='map'
+                    role='application'
+                    googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyAdCskTxc3YDhwR56pWIWzBLMxHX8wgHkM"
+                    loadingElement={<div style={{ height: `100%` }} />}
+                    containerElement={<div style={{ height: `55%`, width: `100%` }} />}
+                    mapElement={<div style={{ height: `100%` }} />}
+                />
+            </ErrorBoundaries>
         )
     }
 }
