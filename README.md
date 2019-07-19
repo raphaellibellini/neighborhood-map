@@ -4,11 +4,12 @@ A single page application that shows the map of the San Marco region in Vezena (
 The application has features such as: locations filter and PWA.
 
 The following resources were used:
+
 [react-google-maps](https://github.com/tomchentw/react-google-maps) to get the map
 
 [Foursquare API](https://developer.foursquare.com/) to get location information
 
-![screenshot of the app](imgs/screen.png)
+![screenshot of the app](src/imgs/screen.png)
 
 ## How to start the app
 
